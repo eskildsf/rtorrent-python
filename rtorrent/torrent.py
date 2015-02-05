@@ -8,7 +8,7 @@ from rtorrent.rpc.processors import *
 
 class Torrent(RPCObject):
     def __init__(self, context, info_hash):
-        super().__init__(context)
+        super(Torrent, self).__init__(context)
         self.info_hash = info_hash
 
     def rpc_call(self, key, *args):
@@ -32,7 +32,7 @@ class Torrent(RPCObject):
 
 class TorrentMulticallBuilder(BaseMulticallBuilder):
     def __init__(self, context, view):
-        super().__init__(context)
+        super(TorrentMulticallBuilder, self).__init__(context)
         if view is None:
             view = 'main'
         self.keys.insert(0, 'get_info_hash')
@@ -43,7 +43,7 @@ class TorrentMulticallBuilder(BaseMulticallBuilder):
 
 
 class TorrentMetadata(object):
-    def __init__(self, results: dict):
+    def __init__(self, results):
         self.results = results
 
     def __getattr__(self, item):
@@ -53,6 +53,12 @@ class TorrentMetadata(object):
 _VALID_TORRENT_PRIORITIES = ['off', 'low', 'normal', 'high']
 
 Torrent.register_rpc_method('get_info_hash', 'd.get_hash')
+Torrent.register_rpc_method('get_name', 'd.get_name')
+Torrent.register_rpc_method('get_completed_bytes', 'd.get_completed_bytes')
+Torrent.register_rpc_method('get_size_bytes', 'd.get_size_bytes')
+Torrent.register_rpc_method('get_state', 'd.get_state')
+Torrent.register_rpc_method('get_complete', 'd.get_complete')
+Torrent.register_rpc_method('load_start', 't.load_start')
 Torrent.register_rpc_method("set_priority", "d.set_priority",
                             pre_processors=[valmap(_VALID_TORRENT_PRIORITIES,
                                                    range(0, 4), 1)],

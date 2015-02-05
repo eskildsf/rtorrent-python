@@ -54,10 +54,10 @@ class RPCMethod(object):
         matches = set(self.get_method_names()).intersection(available_methods)
         return matches.pop() if len(matches) > 0 else None
 
-    def is_available(self, available_methods) -> bool:
+    def is_available(self, available_methods):# -> bool:
         return self.get_available_method_name(available_methods) is not None
 
-    def is_retriever(self) -> bool:
+    def is_retriever(self):# -> bool:
         return self._identify_method_type() == METHOD_TYPE_RETRIEVER
 
     def _identify_method_type(self):

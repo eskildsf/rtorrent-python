@@ -22,7 +22,7 @@ class FileMulticallBuilder(BaseMulticallBuilder):
         self.metadata_cls = FileMetadata
 
 class FileMetadata(object):
-    def __init__(self, results: dict):
+    def __init__(self, results):
         self.results = results
 
     def __getattr__(self, item):

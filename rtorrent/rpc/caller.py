@@ -3,7 +3,8 @@ from rtorrent.rpc.result import RPCResult
 from rtorrent.rpc.method import RPCMethod
 
 
-import xmlrpc.client
+#import xmlrpc.client
+import xmlrpclib as xmlrpcclient
 
 class RPCCaller(object):
     def __init__(self, context):
@@ -27,7 +28,7 @@ class RPCCaller(object):
         return self
 
     def call(self):
-        multi_call = xmlrpc.client.MultiCall(self.context.get_conn())
+        multi_call = xmlrpcclient.MultiCall(self.context.get_conn())
         for rpc_call in self.calls:
             method_name = self._get_method_name(rpc_call.get_method())
             rpc_call.do_pre_processing()
@@ -42,7 +43,7 @@ class RPCCaller(object):
         return RPCResult(self.calls, results)
 
 
-    def _get_method_name(self, rpc_method: RPCMethod):
+    def _get_method_name(self, rpc_method):
         if self.available_methods is None:
             self.available_methods = self.context.get_available_rpc_methods()
 

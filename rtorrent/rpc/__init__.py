@@ -17,13 +17,13 @@ class RPCObject(object):
         setattr(cls, key, single_rpc_call)
 
     @classmethod
-    def get_rpc_methods(cls) -> dict:
+    def get_rpc_methods(cls):# -> dict:
         return dict(cls._rpc_methods[cls])
 
     def __init__(self, context):
         self.context = context
 
-    def rpc_call(self, key, *args) -> RPCCall:
+    def rpc_call(self, key, *args):# -> RPCCall:
         rpc_method = self._get_rpc_method(key)
         return RPCCall(rpc_method, *args)
 
@@ -32,13 +32,13 @@ class RPCObject(object):
             .add(self.rpc_call(key, *args))\
             .call()[0]
 
-    def _get_rpc_method(self, key) -> RPCMethod:
+    def _get_rpc_method(self, key):# -> RPCMethod:
         # TODO: raise a better exception than KeyError
         rpc_method = self._rpc_methods[type(self)][key]
         return rpc_method
 
 class BaseMulticallBuilder(object):
-    def __init__(self, context: RTContext):
+    def __init__(self, context):
         self.keys = []
         self.args = []
         self.context = context
