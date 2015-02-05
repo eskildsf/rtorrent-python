@@ -55,6 +55,7 @@ _VALID_TORRENT_PRIORITIES = ['off', 'low', 'normal', 'high']
 Torrent.register_rpc_method('get_info_hash', 'd.get_hash')
 Torrent.register_rpc_method('get_name', 'd.get_name')
 Torrent.register_rpc_method('get_completed_bytes', 'd.get_completed_bytes')
+Torrent.register_rpc_method('get_bytes_done', 'd.get_bytes_done')
 Torrent.register_rpc_method('get_size_bytes', 'd.get_size_bytes')
 Torrent.register_rpc_method('get_state', 'd.get_state')
 Torrent.register_rpc_method('get_complete', 'd.get_complete')
