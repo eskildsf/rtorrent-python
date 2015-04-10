@@ -19,7 +19,7 @@ classifiers = [
 setup(
     name="rtorrent-python",
     version='1.0.0-alpha',
-    url='https://github.com/cjlucas/rtorrent-python',
+    url='https://github.com/eskildsf/rtorrent-python',
     author='Chris Lucas',
     author_email='chris@chrisjlucas.com',
     maintainer='Chris Lucas',
